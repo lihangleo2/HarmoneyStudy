@@ -45,16 +45,16 @@ struct Index {
         })
         .backgroundColor('#ffffff')
         .onClick(() => {
-          this.testFor()
+          // this.testFor()
           // 点击时间额外逻辑
-          // if (this.message == 'Hello Leo2') {
-          //   this.message = '点击后文案'
-          //   console.log(`my name is ${this.message}`)
-          // } else {
-          //   this.message = 'Hello Leo2'
-          //   this.message = null
-          //   this.test()
-          // }
+          if (this.message == 'Hello Leo2') {
+            this.message = '点击后文案'
+            console.log(`my name is ${this.message}`)
+          } else {
+            this.message = 'Hello Leo2'
+            this.message = null
+            this.test()
+          }
         })
     }
     .height('100%')

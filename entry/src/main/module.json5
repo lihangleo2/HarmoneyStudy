@@ -4,12 +4,14 @@
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
+    //标识当前设备可以运行在哪些设备上
     "deviceTypes": [
       "phone"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    /****************** 模块基础信息 **********************/
     "abilities": [
       {
         "name": "EntryAbility",
@@ -31,6 +33,7 @@
           }
         ]
       }
+      /****************** 当前模块应用组件信息：标识当前Module中UIAbility组件的配置信息 **********************/
     ],
     "extensionAbilities": [
       {
@@ -45,6 +48,8 @@
           }
         ],
       }
-    ]
+    ],
+    //"routerMap": ""  //标识当前模块配置的路由表路径
+
   }
 }
