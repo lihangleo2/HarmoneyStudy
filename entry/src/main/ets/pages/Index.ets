@@ -35,31 +35,106 @@ struct Index {
     //字符串拼接,有点类似kotlin，注意符号是``，不是'' ，console.log(`my name is ${this.message}`)
 
     RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
+      //  1.【简单的TextView】
+      // Text(this.message)
+      //   .id('HelloWorld')
+      //   .fontSize(50)
+      //   .fontWeight(FontWeight.Bold)
+      //   .alignRules({
+      //     center: { anchor: '__container__', align: VerticalAlign.Center },
+      //     middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      //   })
+      //   .backgroundColor('#ffffff')
+      //   .onClick(() => {
+      //     // this.testFor()
+      //     // 点击时间额外逻辑
+      //     if (this.message == 'Hello Leo2') {
+      //       this.message = '点击后文案'
+      //       console.log(`my name is ${this.message}`)
+      //     } else {
+      //       this.message = 'Hello Leo2'
+      //       this.message = null
+      //       this.test()
+      //     }
+      //   })
+      //
+
+      /**
+       * 玩下Text控件
+       * */
+      Text('我是一段文本')
+        .border({ width: 1, color: "#ff0000" })
+        // 顾名思义就是设置baseline的
+        // .baselineOffset(10)
+        //设置个边padding
+        .padding({
+          top: 5,
+          bottom: 5,
+          left: 10,
+          right: 10
+        })
         .alignRules({
           center: { anchor: '__container__', align: VerticalAlign.Center },
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
-        .backgroundColor('#ffffff')
-        .onClick(() => {
-          // this.testFor()
-          // 点击时间额外逻辑
-          if (this.message == 'Hello Leo2') {
-            this.message = '点击后文案'
-            console.log(`my name is ${this.message}`)
-          } else {
-            this.message = 'Hello Leo2'
-            this.message = null
-            this.test()
-          }
-        })
+
+
+      // 2【普通Button按钮】；注意字符串拼接是``
+      // Button(`测试按钮${this.count}`, { type: ButtonType.Normal, stateEffect: true })
+      //   .id('button_normal')
+      //   .borderRadius(8)
+      //   .backgroundColor("#ff4063ef")
+      //   .width(90)
+      //   .height(30)
+      //   .alignRules({
+      //     center: { anchor: '__container__', align: VerticalAlign.Center },
+      //     middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      //   })
+      //   .onClick(() => {
+      //     this.count++
+      //     console.log(`buttonType Normal`)
+      //   })
+
+      // 3【胶囊Button】；注意字符串拼接是``
+      // 胶囊按钮不增加radius
+      // Button(`测试按钮${this.count}`, { type: ButtonType.Capsule, stateEffect: true })
+      //   .id('button_capsule')
+      //   .backgroundColor("#ff4063ef")
+      //   .width(90)
+      //   .height(30)
+      //   .alignRules({
+      //     center: { anchor: '__container__', align: VerticalAlign.Center },
+      //     middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      //   })
+      //   .onClick(() => {
+      //     this.count++
+      //     console.log(`buttonType Normal`)
+      //   })
+
+      // 4【圆形Button;】
+      // Button({ type: ButtonType.Circle, stateEffect: true }) {
+      //   LoadingProgress()
+      //     .width(55)
+      //     .height(55)
+      //     .color("#ffffff")
+      // }
+      // // .id('button_capsule')
+      // .backgroundColor("#ff4063ef")
+      // .width(55)
+      // .height(55)
+      // .alignRules({
+      //   center: { anchor: '__container__', align: VerticalAlign.Center },
+      //   middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      // })
+      // .onClick(() => {
+      //   console.log(`buttonType Circle`)
+      // })
+
+
     }
     .height('100%')
     .width('100%')
-    .backgroundColor('#ff0000')
+    .backgroundColor('#ffffff')
   }
 
   test() {
@@ -156,21 +231,20 @@ interface AreaCat {
   age: number
 }
 
-interface Person{
-  age:number,
-  name:string,
+interface Person {
+  age: number,
+  name: string,
 
-  work():void;
+  work(): void;
 }
 
-class Teacher implements Person{
-  age: number=0;
-  name: string='小红呀';
+class Teacher implements Person {
+  age: number = 0;
+  name: string = '小红呀';
 
   work(): void {
     console.log('老师在辛苦的教书')
   }
-
 }
 
 

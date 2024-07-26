@@ -46,10 +46,15 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ],
     //"routerMap": ""  //标识当前模块配置的路由表路径
-
+//    "requestPermissions": [ // 模块权限配置信息
+//      {
+//        //配置申请网络权限
+//        "name": "ohos.permission.INTERNET"
+//      }
+//    ]
   }
 }
