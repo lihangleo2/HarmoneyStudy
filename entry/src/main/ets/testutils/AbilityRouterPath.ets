@@ -11,3 +11,4 @@ export const TestAbilityPath: Want = {
 }
 
 export const TestAAPath: string = "testutils/TestIndex"
+export const SecondPath: string = "pages/SecondIndex"

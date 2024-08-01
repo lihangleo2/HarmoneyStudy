@@ -5,7 +5,7 @@ import { get, put } from '../utils/SPUtil';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { startAbility } from '../testutils/ActivityUtils';
-import { TestAAPath, TestAbilityPath } from '../testutils/AbilityRouterPath';
+import { SecondPath, TestAAPath, TestAbilityPath } from '../testutils/AbilityRouterPath';
 import { router, Router } from '@kit.ArkUI';
 
 @Entry
@@ -57,7 +57,7 @@ struct Index {
     //字符串拼接,有点类似kotlin，注意符号是``，不是'' ，console.log(`my name is ${this.message}`)
 
     RelativeContainer() {
-      //  1.【简单的TextView】
+       // 1.【简单的TextView】
       // Text(this.message)
       //   .id('HelloWorld')
       //   .fontSize(50)
@@ -66,7 +66,6 @@ struct Index {
       //     center: { anchor: '__container__', align: VerticalAlign.Center },
       //     middle: { anchor: '__container__', align: HorizontalAlign.Center }
       //   })
-      //   .backgroundColor('#ffffff')
       //   .onClick(() => {
       //     // this.testFor()
       //     // 点击时间额外逻辑
@@ -85,7 +84,10 @@ struct Index {
       //       // this.test()
       //     }
       //   })
-      //   .backgroundColor("#ff0000")
+      //   .linearGradient({
+      //     direction:GradientDirection.Bottom,
+      //     colors: [["#ff08f31d",0.25],["#ff0c3be7",1]],
+      //   })
       //   .width('187.5lpx')
 
 
@@ -308,7 +310,8 @@ struct Index {
 
   //显示Want启动
   testGoActivity() {
-    router.pushUrl({url:TestAAPath})
+    // router.pushUrl({url:TestAAPath})
+    router.pushUrl({url:SecondPath})
     // startAbility(TestAbilityPath)
   }
 

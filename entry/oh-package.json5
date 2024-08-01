@@ -1,5 +1,3 @@
-
-//模块级依赖管理配置文件
 {
   "name": "entry",
   "version": "1.0.0",
@@ -7,6 +5,9 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "dependencies": {
+    "@ohos/lottie": "^2.0.11"
+  },
+  "devDependencies": {},
+  "dynamicDependencies": {}
 }
-
