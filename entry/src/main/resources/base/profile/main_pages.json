@@ -1,5 +1,11 @@
 {
   "src": [
-    "pages/Index"
-  ]
+    "pages/Index",
+    "pages/SecondIndex",
+    "testutils/TestIndex"
+  ],
+  "window": {
+    "designWidth": 375,
+    "autoDesignWidth": false
+  }
 }

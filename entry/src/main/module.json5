@@ -2,6 +2,8 @@
   "module": {
     "name": "entry",
     "type": "entry",
+    //配置hap加载入口，也就是配置自定义基础的AbilityStage类
+    "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     //标识当前设备可以运行在哪些设备上
@@ -22,18 +24,31 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
+        //设置页面的启动模式
+        "launchType": "singleton",
+        //配置页面应用能力配置信息
         "skills": [
           {
             "entities": [
-              "entity.system.home"
+              "entity.system.home",//设置UIAbility支持的能力类型，如浏览器类型："entity.system.browsable"
             ],
             "actions": [
-              "action.system.home"
+              "action.system.home",//设置UIAbility支持的操作，如查看数据："ohos.want.action.viewData"
             ]
           }
         ]
-      }
+      },
       /****************** 当前模块应用组件信息：标识当前Module中UIAbility组件的配置信息 **********************/
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton"
+      }
     ],
     "extensionAbilities": [
       {
@@ -50,11 +65,12 @@
       }
     ],
     //"routerMap": ""  //标识当前模块配置的路由表路径
-//    "requestPermissions": [ // 模块权限配置信息
-//      {
-//        //配置申请网络权限
-//        "name": "ohos.permission.INTERNET"
-//      }
-//    ]
+    "requestPermissions": [
+      // 模块权限配置信息
+      {
+        //配置申请网络权限
+        "name": "ohos.permission.INTERNET"
+      }
+    ]
   }
 }

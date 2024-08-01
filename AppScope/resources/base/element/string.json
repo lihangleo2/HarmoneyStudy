@@ -3,6 +3,12 @@
     {
       "name": "app_name",
       "value": "HarmoneyStudy"
+    },{
+      "name": "test_text_msg",
+      "value": "我来测试text文本"
+    },{
+      "name": "TestPath",
+      "value": "pages/TestIndex"
     }
   ]
 }
