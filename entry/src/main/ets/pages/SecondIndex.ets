@@ -11,8 +11,23 @@ struct SecondIndex {
   private animateItem: AnimationItem | null = null;
   private animateName: string = "firstLottie";
 
+  onPageShow(): void {
+    console.log("--onPageShow")
+  }
+
+  onPageHide(): void {
+    console.log("====onPageHide")
+  }
+
+  aboutToAppear(): void {
+    //有点类似页面的onCreate,注意页面还没测量完
+    console.log("++++++++aboutToAppear")
+  }
+
+
   //页面销毁时释放动画资源
   aboutToDisappear(): void {
+    console.log("aboutToDisappear")
     lottie.destroy()
   }
 
@@ -42,7 +57,6 @@ struct SecondIndex {
             path: "common/lottie/loading.json", // 路径加载动画只支持entry/src/main/ets 文件夹下的相对路径
           })
           lottie.play()
-
         })
 
 
