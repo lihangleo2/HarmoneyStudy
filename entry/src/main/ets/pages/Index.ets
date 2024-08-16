@@ -7,6 +7,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { startAbility } from '../testutils/ActivityUtils';
 import { SecondPath, TestAAPath, TestAbilityPath } from '../testutils/AbilityRouterPath';
 import { router, Router } from '@kit.ArkUI';
+import { SmartDataSource } from './lazydata/LazyData';
 
 @Entry
 @Component
@@ -29,7 +30,8 @@ struct Index {
   @State unUser: User | null = null
   //
   //list列表
-  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  @State arr: number[] = [0, 1, 2]
+  private listDatas: SmartDataSource<number> = new SmartDataSource();
   //
   //Grid网格布局
   scroller: Scroller = new Scroller()
@@ -39,6 +41,10 @@ struct Index {
   swiperController: SwiperController = new SwiperController();
   //web
   webviewController: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    this.listDatas.addData(this.arr)
+  }
 
   build() {
     // 申明变量
@@ -57,7 +63,7 @@ struct Index {
     //字符串拼接,有点类似kotlin，注意符号是``，不是'' ，console.log(`my name is ${this.message}`)
 
     RelativeContainer() {
-       // 1.【简单的TextView】
+      // 1.【简单的TextView】
       // Text(this.message)
       //   .id('HelloWorld')
       //   .fontSize(50)
@@ -200,30 +206,41 @@ struct Index {
 
 
       // 8【List列表】
-      // List({ space: 20, initialIndex: 0 }) {
-      //   ForEach(this.arr, (item: number, index: number) => {
-      //     ListItem() {
-      //       Text(`我是列表item == ${index}`)
-      //         .width('90%')
-      //         .height(100)
-      //         .backgroundColor("#ff7184fc")
-      //         .textAlign(TextAlign.Center)
-      //     }
-      //   })
-      // }
-      // //这是控制List item里的排布
-      // .alignListItem(ListItemAlign.Center)
-      // //排列方向
-      // .listDirection(Axis.Vertical)
-      // //每行之间的分割线
-      // .divider(
-      //   {
-      //     strokeWidth: 2,
-      //     color: '#ff0000',
-      //     startMargin: 0,
-      //     endMargin: 0
-      //   }
-      // )
+      List({ space: 20, initialIndex: 0 }) {
+        LazyForEach(this.listDatas, (item: number, index: number) => {
+          ListItem() {
+            Text(`我是列表item == ${item}`)
+              .width('90%')
+              .height(100)
+              .backgroundColor("#ff7184fc")
+              .textAlign(TextAlign.Center)
+          }
+          .onClick(() => {
+            let arrleo: number[] = [7, 8]
+            // this.listDatas.addData(0,-1)
+            // this.listDatas.addData(4,0)
+            // this.listDatas.pushDatasLeo(arrleo,0)
+            // this.listDatas.addData(7,0)
+            // this.listDatas.deleteData(1)
+            this.listDatas.updateData(9, 1)
+            // this.listDatas.addData(10)
+
+          })
+        }, (item: number, index: number) => item + "_" + index)
+      }
+      //这是控制List item里的排布
+      .alignListItem(ListItemAlign.Center)
+      //排列方向
+      .listDirection(Axis.Vertical)
+      //每行之间的分割线
+      .divider(
+        {
+          strokeWidth: 2,
+          color: '#ff0000',
+          startMargin: 0,
+          endMargin: 0
+        }
+      )
 
 
       // 9【网格布局】的使用
@@ -261,30 +278,32 @@ struct Index {
 
 
       // 11【WaterFlow瀑布流组件】
-      WaterFlow() {
-        ForEach(this.arr, (item: number) => {
-          FlowItem() {
-            Column() {
-              if (item % 2 == 0) {
-                Image($r('app.media.girl_long'))
-              } else {
-                Image($r('app.media.girl_short'))
-              }
-              Text(`瀑布流index=${item}`)
-                .margin({ top: 5 })
-            }
-          }.onClick(() => {
-
-            //这里是瀑布流的点击
-            console.log(`我是被点击的哦 ==>${item}`)
-            this.testGoActivity()
-          })
-        })
-      }
-      .padding(10)
-      .columnsTemplate("1fr 1fr 1fr")
-      .columnsGap(10)
-      .rowsGap(10)
+      // WaterFlow() {
+      //   ForEach(this.arr, (item: number) => {
+      //     FlowItem() {
+      //       Column() {
+      //         if (item % 2 == 0) {
+      //           Image($r('app.media.girl_long'))
+      //         } else {
+      //           Image($r('app.media.girl_short'))
+      //         }
+      //         Text(`瀑布流index=${item}`)
+      //           .margin({ top: 5 })
+      //       }
+      //     }.onClick(() => {
+      //
+      //       //这里是瀑布流的点击
+      //       // console.log(`我是被点击的哦 ==>${item}`)
+      //       // this.testGoActivity()
+      //       console.debug(new testIml().name)
+      //
+      //     })
+      //   })
+      // }
+      // .padding(10)
+      // .columnsTemplate("1fr 1fr 1fr")
+      // .columnsGap(10)
+      // .rowsGap(10)
 
 
       // 12【web的使用】
@@ -311,7 +330,7 @@ struct Index {
   //显示Want启动
   testGoActivity() {
     // router.pushUrl({url:TestAAPath})
-    router.pushUrl({url:SecondPath})
+    router.pushUrl({ url: SecondPath })
     // startAbility(TestAbilityPath)
   }
 
@@ -429,6 +448,19 @@ class AreaCatInfo implements AreaCat {
   name: string = "xiaoK";
   age: number = 10;
   fingler: number = 5
+}
+
+interface TestInface {
+  age: number,
+  name: string,
+}
+
+class BaseTest implements TestInface {
+  age: number = 0;
+  name: string = '小红';
+}
+
+class testIml extends BaseTest {
 }
 
 

@@ -9,6 +9,9 @@
     },{
       "name": "TestPath",
       "value": "pages/TestIndex"
+    },{
+      "name": "Camera_reason",
+      "value": "权限申请"
     }
   ]
 }

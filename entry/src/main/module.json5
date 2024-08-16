@@ -70,6 +70,13 @@
       {
         //配置申请网络权限
         "name": "ohos.permission.INTERNET"
+      },{
+        // 相机权限为用户权限，需要用户授权同意。所以要对权限使用的原因和场景进行描述。
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:Camera_reason",
+        "usedScene": {
+          "when": "always"
+        }
       }
     ]
   }
